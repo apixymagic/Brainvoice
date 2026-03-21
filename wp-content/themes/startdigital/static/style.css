@@ -3553,4 +3553,127 @@ body {
   color:white;
   transition:color 0.3s ease;
 }
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  padding: 25px;
+  width: 280px;
+  transition: 0.3s ease;
+}
 
+.testimonial-card:hover {
+  transform: translateY(-8px);
+}
+
+.testimonial-card p {
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #ffffff;
+}
+
+.testimonial-card span {
+  font-size: 13px;
+  color: #14b8a6;
+}
+.testimonial-section {
+  background: linear-gradient(
+    to bottom,
+    rgba(12, 94, 86, 0.85),
+    rgba(6, 40, 38, 0.95)
+  );
+  padding: 80px 20px;
+  text-align: center;
+}
+.demo-section {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(to bottom, #0c5e56, #062826);
+}
+
+.video-container {
+  max-width: 900px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+
+.video-container video {
+  width: 100%;
+  display: block;
+}
+
+.demo-tabs {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  padding: 10px 20px;
+  border-radius: 30px;
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.tab.active,
+.tab:hover {
+  background: #14b8a6;
+  color: black;
+}
+
+.demo-content {
+  margin-top: 25px;
+  color: white;
+}
+
+.demo-content h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.demo-content p {
+  max-width: 600px;
+  margin: auto;
+  opacity: 0.8;
+}
+.brainvoice-video-section{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:30px;
+padding:120px 0;
+}
+
+.video-player{
+box-shadow:0 30px 80px rgba(0,0,0,0.5);
+border-radius:14px;
+overflow:hidden;
+}
+
+.video-list{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.video-list button{
+background:#1f7a6e;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:600;
+}
+
+.video-list button:hover{
+background:#0f4c45;
+}
