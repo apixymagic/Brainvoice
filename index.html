@@ -617,9 +617,40 @@ img:is([sizes=auto i],[sizes^="auto," i]){contain-intrinsic-size:3000px 1500px}
 					</clipPath>
 				</defs>
 			</svg>
-			<div class="video-container aspect-[16/8] w-[75%] overflow-hidden">
-				<img src="./wp-content/themes/startdigital/static/dashboard.png" alt="" class="object-cover h-full w-lvw object-center absolute left-1/2 -translate-x-1/2 filter hue-rotate-120">
-			</div>
+			<section class="brainvoice-video-section">
+
+<div class="video-player">
+<iframe 
+id="brainvoiceVideo"
+width="900"
+height="500"
+src="https://www.youtube.com/embed/"
+frameborder="0"
+allowfullscreen>
+</iframe>
+</div>
+
+<div class="video-list">
+
+<button onclick="changeVideo('https://www.youtube.com/watch?v=VIDEO1')">
+Platform Overview
+</button>
+
+<button onclick="changeVideo('https://www.youtube.com/watch?v=VIDEO2')">
+Visibility Analysis
+</button>
+
+<button onclick="changeVideo('https://www.youtube.com/watch?v=VIDEO3')">
+Sentiment Insight
+</button>
+
+<button onclick="changeVideo('https://www.youtube.com/watch?v=VIDEO4')">
+Competitor Tracking
+</button>
+
+</div>
+
+</section>
 		</div>
 		<div id="industries" class="grid grid-cols-5 gap-12 py-8 tablet:py-32 items-center">
 			<div class="flex flex-col gap-4 w-full text-white z-30 relative max-tablet:px-4 tablet:pl-8 col-span-5 tablet:col-span-2 find-your-container">
@@ -1172,6 +1203,18 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 					
 														</div>
 			</div>
+			<script>
+
+function changeVideo(url){
+
+const videoId = url.split("v=")[1].split("&")[0];
+
+document.getElementById("brainvoiceVideo").src =
+"https://www.youtube.com/embed/" + videoId;
+
+}
+
+</script>
 		</body>
 
 	</html>
