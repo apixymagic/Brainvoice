@@ -38305,7 +38305,7 @@ void main() {
         color: 11493991
       });
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias.glb",
+        "/models/BRAINVOICE.glb",
         (gltf) => {
           this.model = gltf.scene;
           this.model.traverse((child) => {
@@ -38334,7 +38334,7 @@ void main() {
         }
       );
       loader.load(
-        "/wp-content/themes/startdigital/static/models/solias_button_2.glb",
+        "/models/solias_button_2.glb",
         (gltf) => {
           this.buttonModel = gltf.scene;
           this.tokenMeshes = [];
@@ -38751,7 +38751,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       loader.load(
-        "/wp-content/themes/startdigital/static/models/tile.glb",
+        "/models/tile.glb",
         (gltf) => {
           const model = gltf.scene.children[0];
           const geometry = model.geometry.clone();

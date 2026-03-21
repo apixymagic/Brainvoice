@@ -38749,7 +38749,7 @@ void main() {
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
       loader.load(
-        "wp-content/themes/startdigital/static/models/tile.glb",
+        "/wp-content/themes/startdigital/static/models/tile.glb",
         (gltf) => {
           const model = gltf.scene.children[0];
           const geometry = model.geometry.clone();
