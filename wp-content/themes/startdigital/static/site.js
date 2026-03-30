@@ -37734,7 +37734,7 @@ void main() {
         this.loadEnv();
         this.setupResize();
         this.loadAnimation();
-        this.startTokenAnimation();
+        this.setTokenVariant("step");
       });
     }
     async init() {
@@ -38218,7 +38218,8 @@ void main() {
         });
       }
       this.deltaTime = this.clock.getDelta();
-      if (this.tokenMeshes) {
+      const animatedStepMeshes = this.stepPlacementMeshes || this.tokenMeshes;
+      if (animatedStepMeshes) {
         const deltaTime = this.deltaTime || 1 / 60;
         this.scrollVelocity = MathUtils.lerp(
           this.scrollVelocity,
@@ -38227,11 +38228,11 @@ void main() {
         );
         this.targetVelocity = Math.abs(this.targetVelocity) * 0.98;
         const boostFactor = 40;
-        this.tokenMeshes.forEach((mesh) => {
+        animatedStepMeshes.forEach((mesh) => {
           const index = parseInt(
             mesh.userData.name.charAt(mesh.userData.name.length - 1)
           );
-          const baseSpeed = 0.5 + (this.tokenMeshes.length - index) * 0.15;
+          const baseSpeed = 0.5 + (animatedStepMeshes.length - index) * 0.15;
           mesh.userData.boost = mesh.userData.boost || 0;
           mesh.userData.boost = MathUtils.lerp(
             mesh.userData.boost,
@@ -38287,6 +38288,12 @@ void main() {
       dracoLoader.setDecoderPath("https://www.gstatic.com/draco/v1/decoders/");
       const loader = new GLTFLoader();
       loader.setDRACOLoader(dracoLoader);
+      const floatingLogoConfigs = [
+        { path: "/logos/python-Hitem3d-1774506806029.glb", sourceIndex: 0, interactive: true, scale: 0.76, offset: { x: 0.08, y: 0.02, z: 0.18 } },
+        { path: "/logos/kuber.glb", sourceIndex: 1, interactive: true, scale: 0.68, offset: { x: 0.08, y: 0.08, z: 0.18 } },
+        { path: "/logos/nvidia.glb", sourceIndex: 2, interactive: true, scale: 0.74, offset: { x: 0.1, y: 0.12, z: 0.16 } },
+        { path: "/logos/aws.glb", sourceIndex: 3, interactive: true, scale: 0.72, offset: { x: 0.12, y: 0.1, z: 0.14 } }
+      ];
       const textureLoader = new TextureLoader();
       const basePath = "wp-content/themes/startdigital/static/scratched-metal-bl/";
       const roughnessMap = textureLoader.load(
@@ -38434,17 +38441,79 @@ void main() {
           this.tokenMeshes.sort(
             (a, b) => a.userData.tokenIndex - b.userData.tokenIndex
           );
-          this.tokenMeshes.forEach((mesh, index) => {
-            mesh.userData.originalPosition = mesh.position.clone();
-            const angle = Math.random() * Math.PI * 2;
-            const randomX = 0;
-            const randomZ = 0;
-            const randomY = 10;
-            mesh.userData.scrollOffset = {
-              x: randomX,
-              y: randomY,
-              z: randomZ
+          const originalTokenMeshes = [...this.tokenMeshes];
+          originalTokenMeshes.forEach((mesh) => {
+            mesh.visible = false;
+          });
+          this.tokenMeshes = [];
+          this.stepPlacementMeshes = [];
+          floatingLogoConfigs.forEach((config, index) => {
+            const mesh = originalTokenMeshes[config.sourceIndex];
+            const anchor = new Group();
+            anchor.name = `token${index + 1}`;
+            anchor.position.copy(mesh.position);
+            anchor.position.x += config.offset.x;
+            anchor.position.y += config.offset.y;
+            anchor.position.z += config.offset.z;
+            anchor.rotation.set(0, mesh.rotation.y, 0);
+            anchor.scale.copy(mesh.scale);
+            anchor.userData.name = anchor.name;
+            anchor.userData.isToken = true;
+            anchor.userData.tokenIndex = index + 1;
+            anchor.userData.index = index;
+            anchor.userData.originalPosition = anchor.position.clone();
+            anchor.userData.scrollOffset = {
+              x: 0,
+              y: 10,
+              z: 0
             };
+            this.buttonModel.add(anchor);
+            const targetBox = new Box3().setFromObject(mesh);
+            const targetSize = new Vector3();
+            targetBox.getSize(targetSize);
+            const targetMaxDim = Math.max(targetSize.x, targetSize.y, targetSize.z) || 1;
+            loader.load(
+              config.path,
+              (logoGltf) => {
+                const logoScene = logoGltf.scene;
+                const removableNodes = [];
+                logoScene.traverse((child) => {
+                  if (child.name && /base/i.test(child.name)) {
+                    removableNodes.push(child);
+                  }
+                });
+                removableNodes.forEach((child) => {
+                  child.parent?.remove(child);
+                });
+                const logoBox = new Box3().setFromObject(logoScene);
+                const logoSize = new Vector3();
+                const logoCenter = new Vector3();
+                logoBox.getSize(logoSize);
+                logoBox.getCenter(logoCenter);
+                const logoMaxDim = Math.max(logoSize.x, logoSize.y, logoSize.z) || 1;
+                const normalizedScale = targetMaxDim / logoMaxDim * config.scale;
+                logoScene.position.sub(logoCenter);
+                logoScene.scale.setScalar(normalizedScale);
+                logoScene.rotation.set(0, 0, 0);
+                logoScene.traverse((child) => {
+                  child.userData.clickable = !!config.interactive;
+                  child.userData.index = config.sourceIndex;
+                  child.userData.name = anchor.name;
+                  child.userData.tokenIndex = config.sourceIndex + 1;
+                });
+                anchor.add(logoScene);
+              },
+              void 0,
+              (error) => {
+                console.error("Error loading floating logo:", config.path, error);
+              }
+            );
+            this.stepPlacementMeshes.push(anchor);
+            if (config.interactive) {
+              anchor.userData.index = this.tokenMeshes.length;
+              anchor.userData.tokenIndex = this.tokenMeshes.length + 1;
+              this.tokenMeshes.push(anchor);
+            }
           });
           this.buttonModel.position.set(0, -24, -1);
           this.buttonModel.scale.set(1, 1, 1);
@@ -38938,8 +39007,9 @@ void main() {
       }).to(this.model.position, {
         y: "-=0.05"
       });
+      const floatingMeshes = this.stepPlacementMeshes || this.tokenMeshes;
       this.floatingTokenTimelines = [];
-      this.tokenMeshes.forEach((mesh, index) => {
+      floatingMeshes.forEach((mesh, index) => {
         const randomDelay = Math.random() * 0.5;
         const randomDuration = 1.5 + Math.random();
         const randomHeight = 0.03 + Math.random() * 0.02;
@@ -39103,8 +39173,9 @@ void main() {
       mesh.getWorldPosition(meshPosition);
       const labelRect = labelElement.getBoundingClientRect();
       const isEvenIndex = index === 3 ? true : false;
+      const labelEdgeGap = index === 3 ? 12 : 0;
       const labelPosition = new Vector3(
-        (labelRect.left + (isEvenIndex ? labelRect.width + 0 : -0)) / window.innerWidth * 2 - 1,
+        (labelRect.left + (isEvenIndex ? labelRect.width + labelEdgeGap : -0)) / window.innerWidth * 2 - 1,
         -((labelRect.top + labelRect.height / 2) / window.innerHeight) * 2 + 1,
         0
       );
@@ -39610,7 +39681,7 @@ const accentColor = new Color(0.95, 0.97, 0.97);
         });
         tl.addLabel("part3");
         tl.to(
-          this.buttonModel.children.map((child) => child.material),
+          this.buttonModel.children.map((child) => child.material).filter(Boolean),
           {
             opacity: 1,
             duration: 0.05
@@ -39625,6 +39696,7 @@ const accentColor = new Color(0.95, 0.97, 0.97);
           },
           "part2+=1.5"
         );
+        const stepMeshes = this.stepPlacementMeshes || this.tokenMeshes;
         this.tokenMeshes.forEach((mesh, index) => {
           const delay = index * 0.02;
           tl.to(
@@ -39648,7 +39720,6 @@ const accentColor = new Color(0.95, 0.97, 0.97);
             `part2+=${1.45 + delay}`
           );
         });
-        that.startTokenAnimation();
         tl.to(
           {},
           {
@@ -39663,7 +39734,7 @@ const accentColor = new Color(0.95, 0.97, 0.97);
                 tl2.pause();
                 tl2.progress(0);
               });
-              that.tokenMeshes?.forEach((mesh) => {
+              stepMeshes?.forEach((mesh) => {
                 if (mesh.userData.scrollOffset && mesh.userData.originalPosition) {
                   const offset = mesh.userData.scrollOffset;
                   const original = mesh.userData.originalPosition;
@@ -39702,19 +39773,19 @@ const accentColor = new Color(0.95, 0.97, 0.97);
           this.buttonPlane.material.uniforms.opacity,
           {
             value: 1,
-            duration: 0.15
+            duration: 0.24
           },
           "part2+=1.5"
         ).to(
           ".cycle-through-gradient",
           {
             opacity: 1,
-            duration: 0.15,
+            duration: 0.28,
             onStart: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.5 });
+              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.7, ease: "power2.out" });
             },
             onReverseComplete: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.5 });
+              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.4, ease: "power2.in" });
             }
           },
           "part2+=1.8"
@@ -39722,7 +39793,8 @@ const accentColor = new Color(0.95, 0.97, 0.97);
           this.camera.rotation,
           {
             x: 0,
-            duration: 1
+            duration: 1.15,
+            ease: "power3.inOut"
           },
           "part3-=1.5"
         ).to(
@@ -39730,41 +39802,45 @@ const accentColor = new Color(0.95, 0.97, 0.97);
           {
             x: 0.4,
             z: -5.5,
-            duration: 1
+            duration: 1.15,
+            ease: "power3.inOut"
           },
           "part3-=1.5"
         ).to(
           this.buttonModel.rotation,
           {
             y: -Math.PI / 1.5,
-            duration: 1
+            duration: 1.15,
+            ease: "power3.inOut"
           },
           "part3-=1.5"
         ).to(
           this.buttonPlane.position,
           {
             z: -5,
-            duration: 1
+            duration: 1.15,
+            ease: "power3.inOut"
           },
           "part3-=1.5"
         ).to(
           this.buttonPlane.rotation,
           {
             z: -Math.PI / 1.5,
-            duration: 1.35
+            duration: 1.45,
+            ease: "power3.inOut"
           },
           "part3-=1.5"
         ).to(
           ".transition-darken",
           {
             opacity: 0.8,
-            duration: 0.25,
+            duration: 0.34,
             onStart: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.5 });
+              gsapWithCSS.to(".cycle-through", { opacity: 0, duration: 0.4, ease: "power2.in" });
               that.stopTokenAnimation();
             },
             onReverseComplete: () => {
-              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.5 });
+              gsapWithCSS.to(".cycle-through", { opacity: 1, duration: 0.65, ease: "power2.out" });
               that.startTokenAnimation();
             }
           },
@@ -39773,7 +39849,7 @@ const accentColor = new Color(0.95, 0.97, 0.97);
           ".cycle-through-gradient",
           {
             opacity: 0.8,
-            duration: 0.25
+            duration: 0.34
           },
           "part3-=0.4"
         ).to(

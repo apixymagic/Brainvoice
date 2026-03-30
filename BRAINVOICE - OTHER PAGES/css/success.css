@@ -513,3 +513,98 @@
     justify-content: center;
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(19, 176, 203, 0.1), transparent 34%),
+    radial-gradient(circle at top left, rgba(81, 193, 134, 0.08), transparent 28%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar,
+.footer {
+  backdrop-filter: blur(14px);
+}
+
+.navbar {
+  padding: 1.15rem 2.25rem !important;
+}
+
+.logo-container,
+.footer-brand {
+  gap: 0.9rem !important;
+}
+
+.logo-img,
+.footer-brand img {
+  height: 44px !important;
+}
+
+.logo-text,
+.footer-brand-text {
+  letter-spacing: 0.015em !important;
+}
+
+.nav-links {
+  align-items: center;
+  gap: 1.35rem !important;
+}
+
+.nav-links a {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-links a:not(.nav-cta)::after {
+  height: 1px !important;
+  background: rgba(19, 176, 203, 0.32) !important;
+}
+
+.nav-cta {
+  border-radius: 0 !important;
+  padding: 1rem 1.75rem !important;
+  background: #0f8688 !important;
+  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%) !important;
+  box-shadow: none !important;
+}
+
+.success-hero,
+.metrics-section,
+.case-study-section,
+.results-section,
+.developer-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.metric-card,
+.case-study-content,
+.case-study-image,
+.stat-box,
+.quote-box,
+.tech-icon-item {
+  border-radius: 24px !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+
+.metric-card:hover,
+.case-study-content:hover,
+.stat-box:hover,
+.quote-box:hover,
+.tech-icon-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(19, 176, 203, 0.12) !important;
+}
+
+.footer {
+  margin-top: 4rem;
+  border-top: 1px solid rgba(19, 176, 203, 0.12);
+}
+
+.footer-bottom {
+  padding-top: 1.8rem !important;
+}

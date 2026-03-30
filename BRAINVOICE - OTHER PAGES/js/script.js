@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
   setupEventListeners();
   initializeCounters();
   highlightActiveNavLink();
+  initializeRevealAnimations();
+  setupFooterForms();
 });
 
 // Setup event listeners
@@ -21,7 +23,7 @@ function setupEventListeners() {
   document.addEventListener('click', (e) => {
     if (navLinks && navLinks.classList.contains('active') && 
         !navLinks.contains(e.target) && 
-        !mobileMenuBtn.contains(e.target)) {
+        (!mobileMenuBtn || !mobileMenuBtn.contains(e.target))) {
       navLinks.classList.remove('active');
     }
   });
@@ -45,10 +47,16 @@ function setupEventListeners() {
 function highlightActiveNavLink() {
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
   const navLinks = document.querySelectorAll('.nav-links a');
+  const aliases = {
+    'blog.html': 'blogs.html',
+    'contact.html': 'contactus.html'
+  };
+  const normalizedPage = aliases[currentPage] || currentPage;
   
   navLinks.forEach(link => {
-    const linkPage = link.getAttribute('href');
-    if (linkPage === currentPage) {
+    const href = link.getAttribute('href') || '';
+    const linkPage = href.split('/').pop();
+    if (linkPage === normalizedPage) {
       link.classList.add('active');
     } else {
       link.classList.remove('active');
@@ -61,6 +69,41 @@ function toggleMobileMenu() {
   if (navLinks) {
     navLinks.classList.toggle('active');
   }
+}
+
+function initializeRevealAnimations() {
+  const targets = document.querySelectorAll('main section, .featured-ribbon, .featured-card, .posts-section, .blog-grid, .post-container > *');
+  if (!targets.length) return;
+
+  if (!('IntersectionObserver' in window)) {
+    targets.forEach((target) => target.classList.add('is-visible'));
+    return;
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  targets.forEach((target) => {
+    target.classList.add('reveal-on-scroll');
+    observer.observe(target);
+  });
+}
+
+function setupFooterForms() {
+  const forms = document.querySelectorAll('.footer-form');
+  forms.forEach((form) => {
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      showNotification('Thanks! We received your details and will reach out shortly.', 'success');
+      form.reset();
+    });
+  });
 }
 
 // Handle newsletter subscription

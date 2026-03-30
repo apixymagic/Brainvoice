@@ -3,32 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brainvoice · Post</title>
-
-  <!-- Icons -->
+  <title>Brainvoice - Post</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="css/blog.css">
   <style>
-    /* Post page specific styles */
     .post-container {
       max-width: 800px;
       margin: 2rem auto;
       padding: 0 2rem;
     }
-    
     .post-header {
       margin-bottom: 2rem;
     }
-    
     .post-header h1 {
       font-size: 2.5rem;
       line-height: 1.2;
       margin: 1rem 0;
       color: var(--black);
     }
-    
     .post-meta {
       display: flex;
       align-items: center;
@@ -37,7 +29,6 @@
       font-size: 0.9rem;
       flex-wrap: wrap;
     }
-    
     .post-author-card {
       display: flex;
       align-items: center;
@@ -48,33 +39,27 @@
       margin: 2rem 0;
       border: 1px solid var(--border-light);
     }
-    
     .post-author-info h3 {
       font-size: 1.2rem;
       margin-bottom: 0.25rem;
     }
-    
     .post-author-info p {
       color: var(--text-light);
       font-size: 0.9rem;
     }
-    
     .post-content {
       font-size: 1.1rem;
       line-height: 1.8;
       color: var(--text-dark);
     }
-    
     .post-content h2 {
       font-size: 1.8rem;
       margin: 2rem 0 1rem;
       color: var(--black);
     }
-    
     .post-content p {
       margin-bottom: 1.5rem;
     }
-    
     .post-content .intro {
       font-size: 1.2rem;
       font-weight: 500;
@@ -83,7 +68,6 @@
       padding-left: 1.5rem;
       margin: 2rem 0;
     }
-    
     .back-button {
       display: inline-flex;
       align-items: center;
@@ -98,39 +82,22 @@
       border: 1px solid var(--border-light);
       cursor: pointer;
     }
-    
     .back-button:hover {
       color: var(--color-6);
       border-color: var(--color-6);
       transform: translateX(-4px);
     }
-    
-    .back-button i {
-      transition: transform 0.2s;
-    }
-    
-    .back-button:hover i {
-      transform: translateX(-4px);
-    }
-    
     .comments-section {
       margin-top: 4rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border-light);
     }
-    
-    .comments-section h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-    
     .comment-form {
       display: flex;
       gap: 1rem;
       margin-bottom: 2rem;
       flex-wrap: wrap;
     }
-    
     .comment-form input {
       flex: 1;
       padding: 1rem;
@@ -139,7 +106,6 @@
       font-size: 1rem;
       min-width: 250px;
     }
-    
     .comment-form button {
       background: var(--gradient-primary);
       color: white;
@@ -147,22 +113,10 @@
       padding: 0 2rem;
       border-radius: 50px;
       cursor: pointer;
-      transition: all 0.2s;
     }
-    
-    .comment-form button:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-colored);
-    }
-    
     .latest-posts-side {
       margin-top: 3rem;
     }
-    
-    .latest-posts-side h3 {
-      margin-bottom: 1.5rem;
-    }
-    
     .side-post {
       display: flex;
       gap: 1rem;
@@ -174,13 +128,11 @@
       transition: all 0.2s;
       border: 1px solid var(--border-light);
     }
-    
     .side-post:hover {
       transform: translateX(4px);
       box-shadow: var(--shadow-sm);
       border-color: var(--color-3);
     }
-    
     .side-post-img {
       width: 60px;
       height: 60px;
@@ -191,236 +143,184 @@
       color: white;
       flex-shrink: 0;
     }
-    
-    .side-post-content {
-      flex: 1;
-    }
-    
     .side-post-content h4 {
       font-size: 1rem;
       margin-bottom: 0.25rem;
       color: var(--black);
     }
-    
     .side-post-content p {
       font-size: 0.85rem;
       color: var(--text-light);
     }
-    
-    .loading-spinner {
-      text-align: center;
-      padding: 3rem;
-    }
-    
-    .loading-spinner i {
-      font-size: 3rem;
-      color: var(--color-6);
-      margin-bottom: 1rem;
-    }
-    
+    .loading-spinner,
     .error-container {
       text-align: center;
       padding: 3rem;
+    }
+    .loading-spinner i,
+    .error-container i {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: var(--color-6);
+    }
+    .error-container {
       background: var(--white);
       border-radius: 24px;
       border: 1px solid var(--border-light);
     }
-    
-    .error-container i {
-      font-size: 3rem;
-      color: #ff4444;
-      margin-bottom: 1rem;
-    }
-    
-    .error-container h2 {
-      margin-bottom: 1rem;
-    }
-    
-    .error-container .back-button {
-      display: inline-block;
-      margin-top: 1rem;
-    }
-    
     @media (max-width: 600px) {
       .post-header h1 {
         font-size: 2rem;
       }
-      
-      .post-meta {
-        gap: 0.5rem;
-      }
-      
-      .post-author-card {
-        flex-direction: column;
-        text-align: center;
-      }
-      
+      .post-author-card,
       .comment-form {
         flex-direction: column;
-      }
-      
-      .comment-form button {
-        padding: 1rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- NAVBAR -->
-  <!-- NAVBAR with updated order -->
-<nav class="navbar">
-  <div class="logo-container">
-    <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="logo-img">
-    <span class="logo-text">Brain<span>voice.AI</span></span>
-  </div>
-  
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="success-stories.html">Success Stories</a>
-    <a href="careers.html">Careers</a>
-    <a href="about.html">About Us</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Us</a>
-  </div>
+  <nav class="navbar">
+    <a class="logo-container" href="../index.html" aria-label="Brainvoice landing page">
+      <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="logo-img">
+      <span class="logo-text">BRAINVOICE.<span class="logo-ai">AI</span></span>
+    </a>
 
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-    <i class="fas fa-bars"></i>
-  </button>
-</nav>
+    <div class="nav-links">
+      <a href="about.html">About Us</a>
+      <a href="blogs.html" class="active">Blogs</a>
+      <a href="careers.html">Careers</a>
+      <a href="success-stories.html">Success Stories</a>
+      <a href="contactus.html" class="nav-cta">Get Started</a>
+    </div>
 
-  <!-- Tagline -->
-  <div class="top-tagline">
-    <i class="fas fa-asterisk"></i> nulla suspendisse tortor aenean dis placerat.
-  </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
 
   <main class="post-container" id="postContainer">
-    <!-- Content will be populated by JavaScript -->
     <div class="loading-spinner">
       <i class="fas fa-spinner fa-spin"></i>
       <p>Loading post...</p>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-container">
-      <!-- About Us Column -->
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="../index.html">
+          <img src="images/BrainVoice-logo.svg" alt="Brainvoice">
+          <span class="footer-brand-text">BRAINVOICE.<span class="logo-ai">AI</span></span>
+        </a>
+        <p class="footer-brand-copy">Brainvoice helps organizations understand conversations through AI, uncovering insights hidden in human speech.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
       <div class="footer-column">
         <h4>About Us</h4>
         <ul>
-          <li><a href="#">About WebTech</a></li>
-          <li><a href="#">Our Team</a></li>
-          <li><a href="#">Mission & Values</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Community Involvement</a></li>
+          <li><a href="about.html#about-webtech">About WebTech</a></li>
+          <li><a href="about.html#our-team">Our Team</a></li>
+          <li><a href="about.html#mission-values">Mission & Values</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="about.html#community">Community Involvement</a></li>
         </ul>
       </div>
 
-      <!-- Services Column -->
       <div class="footer-column">
         <h4>Services</h4>
         <ul>
-          <li><a href="#">Software Development</a></li>
-          <li><a href="#">IT Consulting</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Digital Transformation</a></li>
-          <li><a href="#">Project Management</a></li>
+          <li><a href="about.html#services-overview">Software Development</a></li>
+          <li><a href="contactus.html">IT Consulting</a></li>
+          <li><a href="contactus.html">Web Design</a></li>
+          <li><a href="success-stories.html">Digital Transformation</a></li>
+          <li><a href="contactus.html">Project Management</a></li>
         </ul>
       </div>
 
-      <!-- Solutions Column -->
       <div class="footer-column">
         <h4>Solutions</h4>
         <ul>
-          <li><a href="#">Industry Solutions</a></li>
-          <li><a href="#">Custom Solutions</a></li>
-          <li><a href="#">Case Studies</a></li>
-          <li><a href="#">Client Success</a></li>
-          <li><a href="#">Partnership</a></li>
+          <li><a href="success-stories.html">Industry Solutions</a></li>
+          <li><a href="contactus.html">Custom Solutions</a></li>
+          <li><a href="success-stories.html">Case Studies</a></li>
+          <li><a href="success-stories.html">Client Success</a></li>
+          <li><a href="contactus.html">Partnership</a></li>
         </ul>
       </div>
 
-      <!-- Resources Column -->
       <div class="footer-column">
         <h4>Resources</h4>
         <ul>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="#">Whitepapers</a></li>
-          <li><a href="#">Webinars</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Knowledge Base</a></li>
-          <li><a href="#">Testimonials</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="blogs.html">Whitepapers</a></li>
+          <li><a href="blogs.html">Webinars</a></li>
+          <li><a href="contactus.html#faq">FAQs</a></li>
+          <li><a href="blogs.html">Knowledge Base</a></li>
+          <li><a href="success-stories.html">Testimonials</a></li>
         </ul>
       </div>
 
-      <!-- Contact & Connect Column -->
-      <div class="footer-column">
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="#">Get in Touch</a></li>
-          <li><a href="#">Support</a></li>
-          <li><a href="#">Sales</a></li>
-          <li><a href="#">Locations</a></li>
-          <li><a href="#">Contact Form</a></li>
-        </ul>
-        
-        <h4 style="margin-top: 1.5rem;">Connect</h4>
-        <ul>
-          <li><a href="#">Social Media</a></li>
-          <li><a href="#">Events</a></li>
-          <li><a href="#">Newsletter</a></li>
-        </ul>
+      <div class="footer-column footer-form-column">
+        <h4>Get Started</h4>
+        <form class="footer-form">
+          <div>
+            <label for="footer-first-name-post">First name*</label>
+            <input id="footer-first-name-post" type="text" placeholder="First name" required>
+          </div>
+          <div>
+            <label for="footer-last-name-post">Last name*</label>
+            <input id="footer-last-name-post" type="text" placeholder="Last name" required>
+          </div>
+          <div>
+            <label for="footer-email-post">Email*</label>
+            <input id="footer-email-post" type="email" placeholder="name@email.com" required>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
 
-    <!-- Bottom Footer -->
     <div class="footer-bottom">
       <div class="footer-bottom-content">
-        <div class="footer-logo">
-          <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="footer-logo-img">
-          <span class="footer-logo-text">Brain<span>voice</span></span>
-        </div>
+        <span>© 2026 Brainvoice. All Rights Reserved.</span>
         <div class="footer-copyright">
-          <span>© 2025 Brainvoice — perspectives on AI & crypto.</span>
-          <span class="divider">✧</span>
-          <span>nulla suspendisse tortor aenean dis placerat.</span>
+          <a class="footer-meta-link" href="#">Terms & conditions</a>
+          <span class="divider">|</span>
+          <a class="footer-meta-link" href="#">Privacy policy</a>
         </div>
-        <div class="footer-social">
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
-          <a href="#" aria-label="Discord"><i class="fab fa-discord"></i></a>
-        </div>
+        <span>Built for Brainvoice AI</span>
       </div>
     </div>
   </footer>
 
+  <script src="js/script.js"></script>
   <script>
-    // Load post data
     document.addEventListener('DOMContentLoaded', async function() {
       const urlParams = new URLSearchParams(window.location.search);
       const postId = urlParams.get('id');
-      
+
       if (!postId) {
-        window.location.href = 'blog.html';
+        window.location.href = 'blogs.html';
         return;
       }
-      
-      // Try to get from sessionStorage first (faster)
+
       const storedPost = sessionStorage.getItem(`post_${postId}`);
-      
+
       if (storedPost) {
         const post = JSON.parse(storedPost);
         renderPost(post);
         loadLatestPosts(postId);
       } else {
-        // If not in sessionStorage, fetch from JSON
         try {
           const response = await fetch('blog-data.json');
           const data = await response.json();
-          const post = data.posts.find(p => p.id === parseInt(postId));
-          
+          const post = data.posts.find((entry) => String(entry.id) === String(postId));
+
           if (post) {
             renderPost(post);
             loadLatestPosts(postId);
@@ -428,152 +328,112 @@
             showError('Post not found');
           }
         } catch (error) {
-          console.error('Error loading post:', error);
-          showError('Failed to load post');
+          showError('Unable to load this post right now.');
         }
       }
     });
-    
+
+    function goBackToBlog() {
+      window.location.href = 'blogs.html';
+    }
+
     function renderPost(post) {
       const container = document.getElementById('postContainer');
-      
-      // Build content HTML
-      let contentHTML = '';
-      
-      // Add introduction if exists
-      if (post.content?.introduction || post.fullContent?.introduction) {
-        const intro = post.content?.introduction || post.fullContent?.introduction;
-        contentHTML += `<p class="intro">${intro}</p>`;
-      }
-      
-      // Add sections
-      const sections = post.content?.sections || post.fullContent?.sections || [];
-      sections.forEach(section => {
-        contentHTML += `<h2>${section.title}</h2>`;
-        section.paragraphs.forEach(para => {
-          contentHTML += `<p>${para}</p>`;
-        });
-      });
-      
-      // Add conclusion
-      const conclusion = post.content?.conclusion || post.fullContent?.conclusion;
-      if (conclusion) {
-        contentHTML += `<div style="background: linear-gradient(135deg, #f8fafc, #ffffff); padding: 2rem; border-radius: 16px; margin: 2rem 0; border-left: 4px solid ${post.color};">
-          <p style="margin: 0; font-style: italic;">${conclusion}</p>
-        </div>`;
-      }
-      
-      const html = `
+      const color = post.color || '#13B0CB';
+
+      container.innerHTML = `
         <button class="back-button" onclick="goBackToBlog()">
           <i class="fas fa-arrow-left"></i> Back to Blog
         </button>
-        
-        <article class="post-header">
-          <div class="post-meta">
-            <span>${post.category}</span>
-            <span>✧</span>
-            <span>${post.readTime}</span>
-            <span>✧</span>
-            <span>${post.date}</span>
+        <article class="post-shell">
+          <header class="post-header">
+            <div class="post-meta">
+              <span>${post.category || 'Insight'}</span>
+              <span>•</span>
+              <span>${post.date || 'Recent'}</span>
+              <span>•</span>
+              <span>${post.readTime || '5 min read'}</span>
+            </div>
+            <h1>${post.title}</h1>
+          </header>
+          <div class="post-author-card">
+            <div class="side-post-img" style="background: linear-gradient(135deg, ${color}, #51C186)">
+              <i class="fas ${post.icon || 'fa-pen-nib'}"></i>
+            </div>
+            <div class="post-author-info">
+              <h3>${post.author || 'Brainvoice Team'}</h3>
+              <p>Brainvoice editorial</p>
+            </div>
           </div>
-          <h1>${post.title}</h1>
+          <div class="post-content">
+            <p class="intro">${post.excerpt || 'A practical look at how modern AI systems can support better decision-making.'}</p>
+            <p>${post.content || post.excerpt || 'This article explores the delivery principles, user experience expectations, and operational foundations that help AI products move from pilot to everyday use.'}</p>
+            <h2>What matters in practice</h2>
+            <p>Successful AI programs balance model performance with workflow fit, team trust, and speed of action. The strongest results usually come from solving one meaningful operational problem well and expanding from there.</p>
+            <h2>Why it works</h2>
+            <p>When insights are easy to find, easy to verify, and connected to an existing process, adoption improves dramatically. That is where thoughtful product design and strong implementation discipline make the difference.</p>
+          </div>
         </article>
-        
-        <div class="post-author-card">
-          <div style="width: 50px; height: 50px; border-radius: 50%; background: ${post.color}; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 1.2rem;">
-            ${post.author.charAt(0)}
+        <section class="comments-section">
+          <h3>Leave a Comment</h3>
+          <form class="comment-form">
+            <input type="text" placeholder="Share your thoughts">
+            <button type="submit">Post</button>
+          </form>
+          <div class="latest-posts-side">
+            <h3>Latest Posts</h3>
+            <div id="latestPosts"></div>
           </div>
-          <div class="post-author-info">
-            <h3>${post.author}</h3>
-            <p>${post.authorTitle || 'Contributor'}</p>
-            <p style="font-size: 0.85rem; margin-top: 0.25rem;">${post.authorBio || ''}</p>
-          </div>
-        </div>
-        
-        <div class="post-content">
-          ${contentHTML}
-        </div>
-        
-        <div class="comments-section">
-          <h3>Comments</h3>
-          <div class="comment-form">
-            <input type="text" placeholder="Write a comment...">
-            <button>Post</button>
-          </div>
-          <p style="color: var(--text-light); text-align: center; padding: 2rem;">Be the first to comment</p>
-        </div>
+        </section>
       `;
-      
-      container.innerHTML = html;
+
+      container.querySelector('.comment-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        showNotification('Thanks for your comment.', 'success');
+        event.target.reset();
+      });
     }
-    
-    function goBackToBlog() {
-      // Check if the page was opened in a new tab
-      if (window.history.length > 1) {
-        window.history.back();
-      } else {
-        window.location.href = 'blog.html';
-      }
-    }
-    
-    function loadLatestPosts(currentPostId) {
-      // Fetch latest posts from JSON
+
+    function loadLatestPosts(currentId) {
       fetch('blog-data.json')
-        .then(response => response.json())
-        .then(data => {
-          const latestPosts = data.posts
-            .filter(p => p.id !== parseInt(currentPostId))
-            .slice(0, 3);
-          
-          const latestContainer = document.getElementById('latestPostsContainer');
-          if (latestContainer) {
-            latestContainer.innerHTML = '';
-            latestPosts.forEach(post => {
-              const sidePost = createSidePost(post);
-              latestContainer.appendChild(sidePost);
-            });
-          }
-        })
-        .catch(error => console.error('Error loading latest posts:', error));
+        .then((response) => response.json())
+        .then((data) => {
+          const latestContainer = document.getElementById('latestPosts');
+          if (!latestContainer) return;
+
+          const posts = data.posts.filter((entry) => String(entry.id) !== String(currentId)).slice(0, 3);
+          latestContainer.innerHTML = posts.map((entry) => `
+            <div class="side-post" onclick="openRelatedPost(${entry.id})">
+              <div class="side-post-img" style="background: linear-gradient(135deg, ${entry.color || '#13B0CB'}, #51C186)">
+                <i class="fas ${entry.icon || 'fa-pen-nib'}"></i>
+              </div>
+              <div class="side-post-content">
+                <h4>${entry.title}</h4>
+                <p>${entry.readTime || '5 min read'}</p>
+              </div>
+            </div>
+          `).join('');
+        });
     }
-    
-    function createSidePost(post) {
-      const div = document.createElement('div');
-      div.className = 'side-post';
-      div.onclick = () => {
-        sessionStorage.setItem(`post_${post.id}`, JSON.stringify(post));
-        window.open(`post.html?id=${post.id}`, '_blank');
-      };
-      
-      div.innerHTML = `
-        <div class="side-post-img" style="background: ${post.color}">
-          <i class="fas ${post.icon} fa-2x"></i>
-        </div>
-        <div class="side-post-content">
-          <h4>${post.title}</h4>
-          <p>${post.author} · ${post.readTime}</p>
-        </div>
-      `;
-      
-      return div;
+
+    function openRelatedPost(postId) {
+      window.location.href = `post.html?id=${postId}`;
     }
-    
+
     function showError(message) {
-      const container = document.getElementById('postContainer');
-      container.innerHTML = `
+      document.getElementById('postContainer').innerHTML = `
         <div class="error-container">
           <i class="fas fa-exclamation-circle"></i>
           <h2>${message}</h2>
-          <p>The post you're looking for doesn't exist or couldn't be loaded.</p>
           <button class="back-button" onclick="goBackToBlog()">
             <i class="fas fa-arrow-left"></i> Back to Blog
           </button>
         </div>
       `;
     }
-    
-    // Make functions global for onclick handlers
+
     window.goBackToBlog = goBackToBlog;
+    window.openRelatedPost = openRelatedPost;
   </script>
 </body>
 </html>

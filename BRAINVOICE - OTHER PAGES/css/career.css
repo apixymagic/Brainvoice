@@ -606,3 +606,209 @@
     transform-origin: 0 0;
   }
 }
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at top right, rgba(19, 176, 203, 0.1), transparent 34%),
+    radial-gradient(circle at top left, rgba(81, 193, 134, 0.08), transparent 28%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.navbar,
+.footer {
+  backdrop-filter: blur(14px);
+}
+
+.navbar {
+  padding: 1.15rem 2.25rem !important;
+}
+
+.logo-container,
+.footer-brand {
+  gap: 0.9rem !important;
+}
+
+.logo-img,
+.footer-brand img {
+  height: 44px !important;
+}
+
+.logo-text,
+.footer-brand-text {
+  letter-spacing: 0.015em !important;
+}
+
+.nav-links {
+  align-items: center;
+  gap: 1.35rem !important;
+}
+
+.nav-links a {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nav-links a:not(.nav-cta)::after {
+  height: 1px !important;
+  background: rgba(19, 176, 203, 0.32) !important;
+}
+
+.nav-cta {
+  border-radius: 0 !important;
+  padding: 1rem 1.75rem !important;
+  background: #0f8688 !important;
+  clip-path: polygon(0 0, 92% 0, 100% 50%, 92% 100%, 0 100%) !important;
+  box-shadow: none !important;
+}
+
+.careers-intro,
+.opportunities-section,
+.internship-section,
+.apply-section,
+.culture-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.opening-card,
+.benefit-card,
+.internship-image,
+.application-form-container,
+.culture-card,
+.opportunity-card {
+  border-radius: 24px !important;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease !important;
+}
+
+.opening-card:hover,
+.benefit-card:hover,
+.application-form-container:hover,
+.culture-card:hover,
+.opportunity-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(19, 176, 203, 0.12) !important;
+}
+
+.footer {
+  margin-top: 4rem;
+  border-top: 1px solid rgba(19, 176, 203, 0.12);
+}
+
+.footer-bottom {
+  padding-top: 1.8rem !important;
+}
+
+.footer {
+  background: #fff !important;
+  color: #0f5053 !important;
+  padding: 0 !important;
+  border-top: 1px solid rgba(19, 176, 203, 0.12) !important;
+}
+
+.footer-container {
+  max-width: 1380px !important;
+  margin: 0 auto !important;
+  padding: 3.4rem 2.4rem 2.9rem !important;
+  display: grid !important;
+  grid-template-columns: 1.2fr 0.95fr 0.95fr 0.95fr 0.95fr 1.25fr !important;
+  gap: 2.2rem !important;
+  border-bottom: none !important;
+  align-items: start !important;
+  justify-content: center !important;
+}
+
+.footer-brand-column,
+.footer-column,
+.footer-form-column {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.footer-brand-column,
+.footer-column,
+.footer-form-column {
+  padding-top: 0.25rem !important;
+}
+
+.footer-brand-copy,
+.footer-bottom-content,
+.footer-meta-link,
+.footer-form input {
+  color: #315e60 !important;
+}
+
+.footer-brand-copy {
+  max-width: 320px !important;
+  line-height: 1.65 !important;
+}
+
+.footer-column h4,
+.footer-brand-text,
+.footer-column ul li a,
+.footer-form label {
+  color: #0f5053 !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+}
+
+.footer-column h4,
+.footer-form-column h4 {
+  margin-bottom: 1.35rem !important;
+}
+
+.footer-column ul {
+  display: grid !important;
+  gap: 0.95rem !important;
+}
+
+.footer-column ul li a {
+  line-height: 1.45 !important;
+}
+
+.footer-column h4::after {
+  background: linear-gradient(135deg, #13b0cb, #51c186) !important;
+}
+
+.footer-social a {
+  background: #167f7f !important;
+  color: #fff !important;
+}
+
+.footer-form input {
+  border-bottom: 1px solid rgba(15, 80, 83, 0.28) !important;
+}
+
+.footer-form {
+  display: grid !important;
+  gap: 1.15rem !important;
+}
+
+.footer-form div {
+  display: grid !important;
+  gap: 0.55rem !important;
+}
+
+.footer-form button {
+  background: #167f7f !important;
+  color: #fff !important;
+  margin-top: 0.35rem !important;
+}
+
+.footer-bottom {
+  background: transparent !important;
+  padding: 2.25rem 2.4rem 1.95rem !important;
+  border-top: 1px dashed rgba(19, 176, 203, 0.35) !important;
+}
+
+.footer-bottom-content {
+  max-width: 1380px !important;
+  margin: 0 auto !important;
+  gap: 1.5rem !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+}

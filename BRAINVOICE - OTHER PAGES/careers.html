@@ -3,62 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Brainvoice · Careers</title>
-
-  <!-- Icons -->
+  <title>Brainvoice - Careers</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/career.css">
 </head>
-
 <body>
-  <!-- NAVBAR -->
-  <!-- NAVBAR with updated order -->
-<nav class="navbar">
-  <div class="logo-container">
-    <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="logo-img">
-    <span class="logo-text">Brain<span>voice.AI</span></span>
-  </div>
-  
-  <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="success-stories.html">Success Stories</a>
-    <a href="careers.html">Careers</a>
-    <a href="about.html">About Us</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact Us</a>
-  </div>
+  <nav class="navbar">
+    <a class="logo-container" href="../index.html" aria-label="Brainvoice landing page">
+      <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="logo-img">
+      <span class="logo-text">BRAINVOICE.<span class="logo-ai">AI</span></span>
+    </a>
 
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
-    <i class="fas fa-bars"></i>
-  </button>
-</nav>
+    <div class="nav-links">
+      <a href="about.html">About Us</a>
+      <a href="blogs.html">Blogs</a>
+      <a href="careers.html" class="active">Careers</a>
+      <a href="success-stories.html">Success Stories</a>
+      <a href="contactus.html" class="nav-cta">Get Started</a>
+    </div>
 
-  <!-- Tagline -->
-  <div class="top-tagline">
-    <i class="fas fa-asterisk"></i> nulla suspendisse tortor aenean dis placerat.
-  </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
 
-  <!-- MAIN CONTENT -->
   <main>
-    <!-- 🔷 SECTION 1: Careers Intro + Application Form -->
     <section class="careers-section">
       <div class="container">
-        <!-- 🔹 1. Top Content (Intro Area) -->
         <div class="careers-intro">
           <h1>Careers in <span class="gradient-text">digital innovation</span></h1>
-          <p class="intro-description">We connect people, skills, and businesses around the globe, creating successful careers both within our own organization and those of our clients.</p>
+          <p class="intro-description">We bring together people, product thinking, and applied AI delivery. If you care about turning ambitious ideas into working systems, we'd love to hear from you.</p>
         </div>
 
-        <!-- 🔹 2. Application Form Section -->
         <div class="application-form-container">
           <h2>Apply for a position</h2>
-          <p class="form-intro">Fill out the form below to connect with exciting job opportunities tailored to your skills and ambitions.</p>
-          
+          <p class="form-intro">Fill out the form below to connect with opportunities aligned with your skills, interests, and growth goals.</p>
+
           <form id="careerForm" class="career-form">
-            <!-- Row 1: First Name + Last Name -->
             <div class="form-row two-columns">
               <div class="form-group">
                 <label for="firstName">First Name</label>
@@ -70,7 +52,6 @@
               </div>
             </div>
 
-            <!-- Row 2: Email + Phone Number -->
             <div class="form-row two-columns">
               <div class="form-group">
                 <label for="email">Email <span class="required">*</span></label>
@@ -82,7 +63,6 @@
               </div>
             </div>
 
-            <!-- Row 3: Address (Single Input - Full Width) -->
             <div class="form-row full-width">
               <div class="form-group">
                 <label for="address">Address</label>
@@ -90,25 +70,20 @@
               </div>
             </div>
 
-            <!-- Row 4: Location Dropdown -->
             <div class="form-row full-width">
               <div class="form-group">
                 <label for="location">Location</label>
                 <select id="location">
                   <option value="">Select your location</option>
-                  <option value="usa">United States</option>
-                  <option value="uk">United Kingdom</option>
                   <option value="india">India</option>
-                  <option value="canada">Canada</option>
-                  <option value="australia">Australia</option>
-                  <option value="germany">Germany</option>
                   <option value="singapore">Singapore</option>
+                  <option value="uk">United Kingdom</option>
+                  <option value="usa">United States</option>
                   <option value="uae">UAE</option>
                 </select>
               </div>
             </div>
 
-            <!-- Row 5: LinkedIn Profile -->
             <div class="form-row full-width">
               <div class="form-group">
                 <label for="linkedin">LinkedIn Profile</label>
@@ -116,7 +91,6 @@
               </div>
             </div>
 
-            <!-- Row 6: File Uploads - Two Side-by-Side -->
             <div class="form-row two-columns">
               <div class="form-group">
                 <label for="resume">Upload Resume <span class="required">*</span></label>
@@ -142,7 +116,6 @@
               </div>
             </div>
 
-            <!-- Row 7: CAPTCHA Verification -->
             <div class="form-row full-width">
               <div class="captcha-container">
                 <div class="recaptcha-box">
@@ -157,7 +130,6 @@
               </div>
             </div>
 
-            <!-- Submit Button -->
             <div class="form-row full-width">
               <button type="submit" class="submit-btn">Submit Application <i class="fas fa-arrow-right"></i></button>
             </div>
@@ -166,147 +138,137 @@
       </div>
     </section>
 
-    <!-- 🔷 SECTION 2: Careers Content + Internship + Footer -->
-    
-    <!-- 🔹 1. Banner Image -->
     <section class="banner-section">
       <div class="banner-image">
         <div class="banner-overlay">
           <h2>Join Our Team of Innovators</h2>
-          <p>Build the future of AI with us</p>
+          <p>Build the future of voice and AI with us.</p>
         </div>
       </div>
     </section>
 
-    <!-- 🔹 2. Opportunities Text Block -->
     <section class="opportunities-section">
       <div class="container">
-        <span class="section-label">Our opportunities</span>
+        <span class="section-label">Our Opportunities</span>
         <h2 class="opportunities-title">Find the right role <span class="gradient-text">for your future</span></h2>
-        <p class="opportunities-description">Move your career forward. Serving a global roster of customers, our industry experts are on-hand to help you to find the role, project, or opportunity to help move your career forward. From AI engineering to product management, we have positions across the globe.</p>
-        <a href="#" class="btn btn-primary">View all current opportunities <i class="fas fa-arrow-right"></i></a>
+        <p class="opportunities-description">From AI engineering and product design to delivery strategy and operations, we look for people who care about execution, learning, and building useful systems.</p>
+        <a href="contactus.html" class="btn btn-primary">Start the conversation <i class="fas fa-arrow-right"></i></a>
       </div>
     </section>
 
-    <!-- 🔹 3. Internship Section (Split Layout) -->
     <section class="internship-section">
       <div class="container">
         <div class="internship-grid">
-          <!-- LEFT: Image -->
           <div class="internship-image">
             <div class="image-placeholder">
               <i class="fas fa-users"></i>
               <span>Internship Program</span>
             </div>
           </div>
-          
-          <!-- RIGHT: Content -->
+
           <div class="internship-content">
-            <span class="section-label">Our services</span>
+            <span class="section-label">Early Talent</span>
             <h2 class="internship-title">Internship</h2>
-            <p class="internship-description">Every year we scout the brightest of minds for our Internship Program to help grow and develop young talent. We provide hands-on training and guidance in the student's respective academic fields. For current high school students, we consult with the corresponding counselors to maximize the internship benefits through credits, letters of recommendation, certifications, and project experience. We also provide paid internships on a case-to-case basis, which includes standard benefits and flexibility between part-time and full-time internships.</p>
-            <a href="#" class="btn btn-secondary">Apply Now <i class="fas fa-arrow-right"></i></a>
+            <p class="internship-description">Every year we work with students and early-career talent through hands-on internships focused on AI systems, design thinking, research, and delivery. The goal is simple: meaningful work, strong mentorship, and real project experience.</p>
+            <a href="contactus.html" class="btn btn-secondary">Apply Now <i class="fas fa-arrow-right"></i></a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- 🔹 4. Footer Section -->
   <footer class="footer">
     <div class="footer-container">
-      <!-- Column 1: About Us -->
+      <div class="footer-brand-column">
+        <a class="footer-brand" href="../index.html">
+          <img src="images/BrainVoice-logo.svg" alt="Brainvoice">
+          <span class="footer-brand-text">BRAINVOICE.<span class="logo-ai">AI</span></span>
+        </a>
+        <p class="footer-brand-copy">Brainvoice helps organizations understand conversations through AI, uncovering insights hidden in human speech.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
       <div class="footer-column">
         <h4>About Us</h4>
         <ul>
-          <li><a href="about.html">About WebTech</a></li>
-          <li><a href="#">Our Team</a></li>
-          <li><a href="#">Mission & Values</a></li>
+          <li><a href="about.html#about-webtech">About WebTech</a></li>
+          <li><a href="about.html#our-team">Our Team</a></li>
+          <li><a href="about.html#mission-values">Mission & Values</a></li>
           <li><a href="careers.html">Careers</a></li>
-          <li><a href="#">Community Involvement</a></li>
+          <li><a href="about.html#community">Community Involvement</a></li>
         </ul>
       </div>
 
-      <!-- Column 2: Services -->
       <div class="footer-column">
         <h4>Services</h4>
         <ul>
-          <li><a href="#">Software Development</a></li>
-          <li><a href="#">IT Consulting</a></li>
-          <li><a href="#">Web Design</a></li>
-          <li><a href="#">Digital Transformation</a></li>
-          <li><a href="#">Project Management</a></li>
+          <li><a href="about.html#services-overview">Software Development</a></li>
+          <li><a href="contactus.html">IT Consulting</a></li>
+          <li><a href="contactus.html">Web Design</a></li>
+          <li><a href="success-stories.html">Digital Transformation</a></li>
+          <li><a href="contactus.html">Project Management</a></li>
         </ul>
       </div>
 
-      <!-- Column 3: Solutions -->
       <div class="footer-column">
         <h4>Solutions</h4>
         <ul>
-          <li><a href="#">Industry Solutions</a></li>
-          <li><a href="#">Custom Solutions</a></li>
+          <li><a href="success-stories.html">Industry Solutions</a></li>
+          <li><a href="contactus.html">Custom Solutions</a></li>
           <li><a href="success-stories.html">Case Studies</a></li>
-          <li><a href="#">Client Success</a></li>
-          <li><a href="#">Partnership</a></li>
+          <li><a href="success-stories.html">Client Success</a></li>
+          <li><a href="contactus.html">Partnership</a></li>
         </ul>
       </div>
 
-      <!-- Column 4: Resources -->
       <div class="footer-column">
         <h4>Resources</h4>
         <ul>
-          <li><a href="blog.html">Blog</a></li>
-          <li><a href="#">Whitepapers</a></li>
-          <li><a href="#">Webinars</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Knowledge Base</a></li>
-          <li><a href="#">Testimonials</a></li>
+          <li><a href="blogs.html">Blog</a></li>
+          <li><a href="blogs.html">Whitepapers</a></li>
+          <li><a href="blogs.html">Webinars</a></li>
+          <li><a href="contactus.html#faq">FAQs</a></li>
+          <li><a href="blogs.html">Knowledge Base</a></li>
+          <li><a href="success-stories.html">Testimonials</a></li>
         </ul>
       </div>
 
-      <!-- Column 5: Contact Us -->
-      <div class="footer-column">
-        <h4>Contact Us</h4>
-        <ul>
-          <li><a href="contact.html">Get in Touch</a></li>
-          <li><a href="#">Support</a></li>
-          <li><a href="#">Sales</a></li>
-          <li><a href="#">Locations</a></li>
-          <li><a href="contact.html">Contact Form</a></li>
-        </ul>
-      </div>
-
-      <!-- Column 6: Social / Connect links -->
-      <div class="footer-column">
-        <h4>Connect</h4>
-        <ul>
-          <li><a href="#"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-          <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
-          <li><a href="#"><i class="fab fa-github"></i> GitHub</a></li>
-          <li><a href="#"><i class="fab fa-discord"></i> Discord</a></li>
-          <li><a href="#"><i class="fab fa-youtube"></i> YouTube</a></li>
-        </ul>
+      <div class="footer-column footer-form-column">
+        <h4>Get Started</h4>
+        <form class="footer-form">
+          <div>
+            <label for="footer-first-name-careers">First name*</label>
+            <input id="footer-first-name-careers" type="text" placeholder="First name" required>
+          </div>
+          <div>
+            <label for="footer-last-name-careers">Last name*</label>
+            <input id="footer-last-name-careers" type="text" placeholder="Last name" required>
+          </div>
+          <div>
+            <label for="footer-email-careers">Email*</label>
+            <input id="footer-email-careers" type="email" placeholder="name@email.com" required>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
 
-    <!-- Bottom Footer Row: Copyright text -->
     <div class="footer-bottom">
       <div class="footer-bottom-content">
-        <div class="footer-logo">
-          <img src="images/BrainVoice-logo.svg" alt="Brainvoice" class="footer-logo-img">
-          <span class="footer-logo-text">Brain<span>voice</span></span>
-        </div>
+        <span>© 2026 Brainvoice. All Rights Reserved.</span>
         <div class="footer-copyright">
-          <span>© 2025 Brainvoice.AI</span>
-          <span class="divider">✧</span>
-          <span>All Rights Reserved</span>
+          <a class="footer-meta-link" href="#">Terms & conditions</a>
+          <span class="divider">|</span>
+          <a class="footer-meta-link" href="#">Privacy policy</a>
         </div>
+        <span>Built for Brainvoice AI</span>
       </div>
     </div>
   </footer>
 
-  <!-- JS -->
   <script src="js/script.js"></script>
-  <script src="js/careers.js"></script>
 </body>
 </html>
